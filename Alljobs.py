@@ -4,6 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -12,10 +13,13 @@ options.add_argument('ignore-certificate-errors')
 driver = webdriver.Chrome(options)
 try:
     wait = WebDriverWait(driver, 10)
+    action = ActionChains(driver)
     driver.get('https://www.alljobs.co.il')
+
+     # Login link
     wait.until(EC.presence_of_element_located(
         (By.LINK_TEXT, 'כניסה')
-    )).click() # Login link
+    )).click()
 
     # Switch to signin iframe
     wait.until(EC.frame_to_be_available_and_switch_to_it((By.CSS_SELECTOR, "iframe[id='signin_iframe']")))
@@ -27,5 +31,21 @@ try:
     password = driver.find_element(By.CSS_SELECTOR, '#inputPassword')
     username.send_keys(os.getenv("AJ_Email"))
     password.send_keys(os.getenv("AJ_Password"))
+
+    # Click submit
+    driver.find_element(By.ID, 'btn-submit-form').click()
+
+    # Find and hover over user menu
+    menu = wait.until(EC.presence_of_element_located(
+        (By.CLASS_NAME, 'category-text')
+    ))
+    action.move_to_element(menu).perform()
+    time.sleep(20)
+
+    # Enter CV area
+    wait.until(EC.presence_of_element_located(
+        (By.CSS_SELECTOR, "[href='/User/UserCVsPanel/CVManagement.aspx']")
+    )).click()
+
 finally:
     driver.quit()

@@ -23,6 +23,18 @@ try:
     password = driver.find_element(By.CSS_SELECTOR, '#session_password')
     username.send_keys(os.getenv("LI_Username"))
     password.send_keys(os.getenv("LI_Password"))
+    driver.find_element(By.XPATH, '//*[@id="main-content"]/section[1]/div/div/form/div[2]/button').click()
+
+    # Find and click 'Jobs'
+    wait.until(EC.presence_of_element_located(
+        (By.LINK_TEXT, 'Jobs')
+    )).click()
+
+    # Find and click 'Application settings'
+    wait.until(EC.presence_of_element_located(
+        (By.XPATH, '/html/body/div[5]/div[3]/div/div[3]/div/div/div/div/div/div[1]/nav/div/ul/li[7]/a')
+    )).click()
     time.sleep(10)
+    
 finally:
     driver.quit()

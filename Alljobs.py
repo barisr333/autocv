@@ -12,7 +12,7 @@ options = webdriver.ChromeOptions()
 options.add_argument('ignore-certificate-errors')
 driver = webdriver.Chrome(options)
 try:
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 30)
     action = ActionChains(driver)
     driver.get('https://www.alljobs.co.il')
 
@@ -37,15 +37,12 @@ try:
 
     # Find and hover over user menu
     menu = wait.until(EC.presence_of_element_located(
-        (By.CLASS_NAME, 'category-text')
+        (By.XPATH, '//*[@id="nav-item-user-area"]/div/div')
     ))
     action.move_to_element(menu).perform()
     time.sleep(20)
 
     # Enter CV area
-    wait.until(EC.presence_of_element_located(
-        (By.CSS_SELECTOR, "[href='/User/UserCVsPanel/CVManagement.aspx']")
-    )).click()
 
 finally:
     driver.quit()

@@ -23,7 +23,7 @@ try:
     password = driver.find_element(By.CSS_SELECTOR, '#session_password')
     username.send_keys(os.getenv("LI_Username"))
     password.send_keys(os.getenv("LI_Password"))
-    driver.find_element(By.XPATH, '//*[@id="main-content"]/section[1]/div/div/form/div[2]/button').click()
+    driver.find_element(By.XPATH, "//button[@type='submit']").click()
 
     # Find and click 'Jobs'
     wait.until(EC.presence_of_element_located(
@@ -34,9 +34,17 @@ try:
     wait.until(EC.presence_of_element_located(
         (By.LINK_TEXT, 'Application settings')
     )).click()
-    wait.until(EC.element_to_be_clickable(
+
+    # TBD - Delete existing CV of same name
+    """wait.until(EC.element_to_be_clickable(
         (By.XPATH, "//button[@class='artdeco-dropdown__trigger artdeco-dropdown__trigger--placement-bottom ember-view']")
-    )).click()
-    time.sleep(10)
+    )).click()"""
+
+    # Upload new CV
+    file_input_elem = wait.until(EC.presence_of_element_located(
+        (By.XPATH, "//input[@type='file']")
+    ))
+    file_input_elem.send_keys(os.getenv("CV_Path"))
+    time.sleep(5) # TBD - Find a better way to do this!
 finally:
     driver.quit()

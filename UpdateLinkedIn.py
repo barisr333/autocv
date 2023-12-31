@@ -32,9 +32,11 @@ try:
 
     # Find and click 'Application settings'
     wait.until(EC.presence_of_element_located(
-        (By.XPATH, '/html/body/div[5]/div[3]/div/div[3]/div/div/div/div/div/div[1]/nav/div/ul/li[7]/a')
+        (By.LINK_TEXT, 'Application settings')
+    )).click()
+    wait.until(EC.element_to_be_clickable(
+        (By.XPATH, "//button[@class='artdeco-dropdown__trigger artdeco-dropdown__trigger--placement-bottom ember-view']")
     )).click()
     time.sleep(10)
-    
 finally:
     driver.quit()

@@ -34,13 +34,18 @@ try:
 
     # Click submit
     driver.find_element(By.ID, 'btn-submit-form').click()
+    # driver.get('https://www.alljobs.co.il/User/UserCVsPanel/CVManagement.aspx')
 
+    # Get rid of popup
+    wait.until(EC.element_to_be_clickable(
+        (By.XPATH, "//button[@class='za_reset zoom_btn_c']")
+    )).click()
     # Find and hover over user menu
     menu = wait.until(EC.presence_of_element_located(
-        (By.XPATH, '//*[@id="nav-item-user-area"]/div/div')
+        (By.XPATH, "//div[@id='nav-item-user-area']")
     ))
     action.move_to_element(menu).perform()
-    time.sleep(20)
+    time.sleep(10)
 
     # Enter CV area
 

@@ -36,15 +36,23 @@ try:
     )).click()
 
     # TBD - Delete existing CV of same name
-    """wait.until(EC.element_to_be_clickable(
-        (By.XPATH, "//button[@class='artdeco-dropdown__trigger artdeco-dropdown__trigger--placement-bottom ember-view']")
-    )).click()"""
+    lpath = "//h3[contains(string(), 'SWE')]/../following-sibling::div//button[@class='artdeco-dropdown__trigger artdeco-dropdown__trigger--placement-bottom ember-view']"
+    wait.until(EC.element_to_be_clickable(
+        (By.XPATH, lpath)
+    )).click()
+
+    lpath = "//h3[contains(string(), 'Gen')]/../following-sibling::div//button[@class='artdeco-dropdown__trigger artdeco-dropdown__trigger--placement-bottom ember-view']"
+    wait.until(EC.element_to_be_clickable(
+        (By.XPATH, lpath)
+    )).click()
 
     # Upload new CV
-    file_input_elem = wait.until(EC.presence_of_element_located(
+    '''file_input_elem = wait.until(EC.presence_of_element_located(
         (By.XPATH, "//input[@type='file']")
     ))
-    file_input_elem.send_keys(os.getenv("CV_Path"))
+    file_input_elem.send_keys(os.getenv("CV_Path"))'''
     time.sleep(5) # TBD - Find a better way to do this!
+
+    # //h3[contains(string(), 'SWE')]/../following-sibling::div//button[@class='artdeco-dropdown__trigger artdeco-dropdown__trigger--placement-bottom ember-view']
 finally:
     driver.quit()

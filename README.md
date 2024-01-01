@@ -2,16 +2,13 @@
 Upload up-to-date CVs to popular job boards.
 
 ## TODO
-- Add automatic CV deletion functionality - delete CV with same name.
-- Add support for multiple CVs.
-- Add unit tests.
+- Unit tests(?).
 - Expand support to AllJobs, Drushim.IL.
-- More as I come up with it...
 
 ## Requirements
 - Currently supports Google Chrome only.
 - [Chromedriver](https://googlechromelabs.github.io/chrome-for-testing/): Currently version 120.0.6099.109
-- Python 3.11.7
+- Python 3.7
 
 ## Packages
 - Selenium and dotenv packages required.
@@ -23,14 +20,29 @@ pip install python-dotenv
 ```
 ## Usage
 - Clone repo.
-- Create .env file in repo folder
+- Create .env and path_config.json file in repo folder. A .env file specifies environment variables and is used for sensitive login info. The path_config.json file specifies name and system path for each CV file.
 - Current structure of .env file is as follows:
 ```
-AJ_Email = ''
-AJ_Password = ''
-LI_Username = ''
-LI_Password = ''
-CV_Path = ''
+AJ_EMAIL = ''
+AJ_PASSWORD = ''
+LI_USERNAME = ''
+LI_PASSWORD = ''
 ```
-AJ = Alljobs credentials. LI = LinkedIn credentials. CV_Path = Path to current up-to-date CV.
-If uploaded to GitHub, remember to include .env in .gitignore.
+Where LI = LinkedIn credentials and AJ = AllJobs credentials (currently unsupported).
+
+- path_config.json file structure is as follows:
+```json
+ [
+    {
+        "Name": "Example1",
+        "Path": "C:\\Users\\myUser\\Ex_CV_1.pdf"
+    },
+
+    {
+        "Name": "Example2",
+        "Path": "C:\\Users\\myUser\\Ex_CV_2.pdf"
+    }
+]
+```
+- **IMPORTANT**: 'Name' field must be a **unique** string or substring included in the CV name on LinkedIn/AJ.
+- **IMPORTANT**: Don't forget to include .env and .json files in .gitignore.

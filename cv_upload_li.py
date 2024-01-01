@@ -1,4 +1,5 @@
 import time
+import json
 import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -8,9 +9,16 @@ from selenium.webdriver.common.action_chains import ActionChains
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# Parse config JSON file into object
+with open('path_config.json') as f:
+    paths_list = json.load(f)
+
+# Set up Chromedriver
 options = webdriver.ChromeOptions()
 options.add_argument('ignore-certificate-errors')
 driver = webdriver.Chrome(options)
+
 try:
     wait = WebDriverWait(driver, 10)
     action = ActionChains(driver)
@@ -37,6 +45,9 @@ try:
 
     ### Delete existing CV of same name ###
 
+    for cv in paths_list:
+        
+
     # To find correct button for each resume card, we start by finding its name and working up the DOM
     lpath = "//h3[contains(string(), 'SWE')]/../following-sibling::div//button[@class='artdeco-dropdown__trigger artdeco-dropdown__trigger--placement-bottom ember-view']"
 
@@ -52,15 +63,10 @@ try:
     time.sleep(3)
 
     # Upload new CV
-    file_input_elem = wait.until(EC.presence_of_element_located(
+    '''file_input_elem = wait.until(EC.presence_of_element_located(
         (By.XPATH, "//input[@type='file']")
     ))
     file_input_elem.send_keys(os.getenv("SWE_CV_PATH"))
-    time.sleep(5) # TBD - Find a better way to do this!
-
-    lpath = "//h3[contains(string(), 'Gen')]/../following-sibling::div//button[@class='artdeco-dropdown__trigger artdeco-dropdown__trigger--placement-bottom ember-view']"
-    wait.until(EC.element_to_be_clickable(
-        (By.XPATH, lpath)
-    )).click()
+    time.sleep(5) # TBD - Find a better way to do this!'''
 finally:
     driver.quit()

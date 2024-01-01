@@ -29,8 +29,8 @@ try:
         (By.CSS_SELECTOR, '#inputEmail')
     ))
     password = driver.find_element(By.CSS_SELECTOR, '#inputPassword')
-    username.send_keys(os.getenv("AJ_Email"))
-    password.send_keys(os.getenv("AJ_Password"))
+    username.send_keys(os.getenv("AJ_EMAIL"))
+    password.send_keys(os.getenv("AJ_PASSWORD"))
 
     # Click submit
     driver.find_element(By.ID, 'btn-submit-form').click()

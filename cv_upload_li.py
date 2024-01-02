@@ -44,23 +44,28 @@ try:
     )).click()
 
     ### Delete existing CV of same name ###
-
     for cv in paths_list:
         # To find correct button for each resume card, we start by finding its name and working up the DOM
         lpath = "//h3[contains(string()," +  cv['Name'] + ")]/../following-sibling::div//button[@class='artdeco-dropdown__trigger artdeco-dropdown__trigger--placement-bottom ember-view']"
+
         # Click '...'
         wait.until(EC.element_to_be_clickable(
             (By.XPATH, lpath)
         )).click()
+
         # Click 'Delete'
         wait.until(EC.element_to_be_clickable(
             (By.XPATH, "//div[@class='artdeco-dropdown__content-inner']/div[contains(string(), 'Delete')]")
         )).click()
-        # Upload new CV
+        time.sleep(3)
+    
+    ### Upload new CV ###
+    for cv in paths_list:
+        # Locate the file input and upload
         file_input_elem = wait.until(EC.presence_of_element_located(
             (By.XPATH, "//input[@type='file']")
         ))
         file_input_elem.send_keys(cv['Path'])
-        time.sleep(5) # TBD - Find a better way to do this!
+        time.sleep(3)
 finally:
     driver.quit()

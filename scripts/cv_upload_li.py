@@ -5,6 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import TimeoutException
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -65,5 +66,11 @@ try:
         ))
         file_input_elem.send_keys(cv['Path'])
         time.sleep(3)
+
+    print("SUCCESS")
+
+except TimeoutException as ex:
+    print("Timed out before element found")
+
 finally:
     driver.quit()

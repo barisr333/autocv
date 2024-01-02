@@ -1,5 +1,6 @@
 import time
 import os
+import json
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -19,7 +20,7 @@ options.add_argument('ignore-certificate-errors')
 driver = webdriver.Chrome(options)
 
 try:
-    wait = WebDriverWait(driver, 30)
+    wait = WebDriverWait(driver, 20)
     action = ActionChains(driver)
     driver.get('https://www.alljobs.co.il')
 
@@ -41,19 +42,25 @@ try:
 
     # Click submit
     driver.find_element(By.ID, 'btn-submit-form').click()
+    #wait.until(EC.frame_to_be_available_and_switch_to_it((By.CSS_SELECTOR, "iframe[id='_hjSafeContext_81058926']")))
 
     # Get rid of popup
-    wait.until(EC.element_to_be_clickable(
+    '''wait.until(EC.element_to_be_clickable(
         (By.XPATH, "//button[@class='za_reset zoom_btn_c']")
     )).click()
+
     # Find and hover over user menu
     menu = wait.until(EC.presence_of_element_located(
-        (By.XPATH, "//div[@id='nav-item-user-area']")
+        (By.XPATH, "//div[@id='nav-item-user-area']/div[@class='sub-menu-hover-area']")
     ))
     action.move_to_element(menu).perform()
-    time.sleep(10)
+
+    wait.until(EC.element_to_be_clickable(
+        (By.LINK_TEXT, 'קורות החיים שלי')
+    )).click()'''
 
     # Enter CV area
+    time.sleep(3)
 
 finally:
     driver.quit()

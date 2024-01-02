@@ -5,7 +5,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,7 +20,6 @@ driver = webdriver.Chrome(options)
 
 try:
     wait = WebDriverWait(driver, 10)
-    action = ActionChains(driver)
     driver.get('https://www.linkedin.com')
 
     # Get elements and type credentials

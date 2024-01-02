@@ -8,9 +8,16 @@ from selenium.webdriver.common.action_chains import ActionChains
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# Parse config JSON file into object
+with open('path_config.json') as f:
+    paths_list = json.load(f)
+
+# Set up Chromedriver
 options = webdriver.ChromeOptions()
 options.add_argument('ignore-certificate-errors')
 driver = webdriver.Chrome(options)
+
 try:
     wait = WebDriverWait(driver, 30)
     action = ActionChains(driver)
@@ -34,7 +41,6 @@ try:
 
     # Click submit
     driver.find_element(By.ID, 'btn-submit-form').click()
-    # driver.get('https://www.alljobs.co.il/User/UserCVsPanel/CVManagement.aspx')
 
     # Get rid of popup
     wait.until(EC.element_to_be_clickable(

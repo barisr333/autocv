@@ -44,18 +44,17 @@ try:
     driver.find_element(By.ID, 'btn-submit-form').click()
     #wait.until(EC.frame_to_be_available_and_switch_to_it((By.CSS_SELECTOR, "iframe[id='_hjSafeContext_81058926']")))
 
-    # Get rid of popup
     '''wait.until(EC.element_to_be_clickable(
         (By.XPATH, "//button[@class='za_reset zoom_btn_c']")
-    )).click()
+    )).click()'''
 
     # Find and hover over user menu
     menu = wait.until(EC.presence_of_element_located(
-        (By.XPATH, "//div[@id='nav-item-user-area']/div[@class='sub-menu-hover-area']")
+        (By.XPATH, "//div[@id='nav-item-user-area']")
     ))
     action.move_to_element(menu).perform()
 
-    wait.until(EC.element_to_be_clickable(
+    '''wait.until(EC.element_to_be_clickable(
         (By.LINK_TEXT, 'קורות החיים שלי')
     )).click()'''
 

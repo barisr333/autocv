@@ -32,6 +32,7 @@ LI_USERNAME = ''
 LI_PASSWORD = ''
 DR_EMAIL=''
 DR_PASSWORD=''
+browser=''
 ```
 LI = LinkedIn, AJ = AllJobs, DR = Drushim.IL
 

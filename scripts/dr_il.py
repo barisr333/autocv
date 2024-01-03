@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.action_chains import ActionChains
+from selenium.common.exceptions import TimeoutException
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -21,7 +21,6 @@ driver = webdriver.Chrome(options)
 
 try:
     wait = WebDriverWait(driver, 20)
-    action = ActionChains(driver)
     driver.get('https://www.drushim.co.il/')
 
     # Click login
@@ -46,9 +45,18 @@ try:
     wait.until(EC.element_to_be_clickable(
         (By.XPATH, "//span[contains(text(), 'קבצי קורות חיים')]")
     )).click()
-    
-    time.sleep(5)
 
+    ### Update CVs - Drushim has nice update functionality so no need to delete ###
+    for cv in paths_list:
+        wait.until(EC.presence_of_element_located(
+            (By.XPATH, "//div[@class='layout cv-short-view wrap pointer' and contains(string()," + "'"+cv['Name'] +"')]//input")
+        )).send_keys(cv['Path'])
+        time.sleep(3)
+    
+    print("SUCCESS")
+
+except TimeoutException as ex:
+    print("Timed out before element found")
 
 finally:
     driver.quit()

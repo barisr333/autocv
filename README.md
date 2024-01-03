@@ -2,8 +2,9 @@
 Upload up-to-date CVs to popular job boards.
 
 ## TODO
-- Unit tests(?).
-- Expand support to AllJobs, Drushim.IL.
+- Add AllJobs support (currently broken).
+- Add Hebrew CV name support (currently Python can't seem to parse the JSON).
+- Add wrapper script to run everything.
 
 ## Requirements
 - Currently supports Google Chrome only.
@@ -27,8 +28,10 @@ AJ_EMAIL = ''
 AJ_PASSWORD = ''
 LI_USERNAME = ''
 LI_PASSWORD = ''
+DR_EMAIL=''
+DR_PASSWORD=''
 ```
-Where LI = LinkedIn credentials and AJ = AllJobs credentials (currently unsupported).
+LI = LinkedIn, AJ = AllJobs, DR = Drushim.IL
 
 - path_config.json file structure is as follows:
 ```json

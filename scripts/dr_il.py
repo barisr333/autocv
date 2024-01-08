@@ -10,7 +10,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# Parse config JSON file into object
+# Parse config JSON file into objects
 with open('path_config.json') as f:
     paths_list = json.load(f)
 

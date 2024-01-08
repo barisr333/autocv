@@ -1,5 +1,5 @@
-# CV Auto Upload
-Upload up-to-date CVs to popular job boards.
+# autocv
+Automatically update CV files in popular job boards.
 
 ## TODO
 - Add AllJobs support (currently broken).

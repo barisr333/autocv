@@ -5,10 +5,12 @@ Upload up-to-date CVs to popular job boards.
 - Add AllJobs support (currently broken).
 - Add Hebrew CV name support (currently Python can't seem to parse the JSON).
 - Add wrapper script to run everything.
+- Dockerize (?)
 
 ## Requirements
-- Currently supports Google Chrome only.
-- [Chromedriver](https://googlechromelabs.github.io/chrome-for-testing/): Currently version 120.0.6099.109
+- Currently supports Google Chrome and Microsoft Edge.
+- [Chromedriver](https://googlechromelabs.github.io/chrome-for-testing/), Version 120.0.6099.109
+- [Edge WebDriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/?form=MA13LH), Version 120.0.2210.91
 - Python 3.7
 
 ## Packages
@@ -30,6 +32,7 @@ LI_USERNAME = ''
 LI_PASSWORD = ''
 DR_EMAIL=''
 DR_PASSWORD=''
+browser=''
 ```
 LI = LinkedIn, AJ = AllJobs, DR = Drushim.IL
 

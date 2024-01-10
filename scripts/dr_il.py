@@ -14,14 +14,15 @@ load_dotenv()
 with open('path_config.json') as f:
     paths_list = json.load(f)
 
-match os.getenv("browser"):
-    case 'Chrome':
-        options = webdriver.ChromeOptions()
-        options.add_argument('ignore-certificate-errors')
-        driver = webdriver.Chrome(options)
-    case 'Edge':
-        driver = webdriver.Edge()
+# match os.getenv("browser"):
+#     case 'Chrome':
+#         options = webdriver.ChromeOptions()
+#         options.add_argument('ignore-certificate-errors')
+#         driver = webdriver.Chrome(options)
+#     case 'Edge':
+#         driver = webdriver.Edge()
 
+driver = webdriver.Edge()
 
 try:
     wait = WebDriverWait(driver, 20)

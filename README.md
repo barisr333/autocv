@@ -2,16 +2,15 @@
 Automatically update CV files in popular job boards.
 
 ## TODO
-- Add AllJobs support (currently broken).
-- Add Hebrew CV name support (currently Python can't seem to parse the JSON).
-- Add wrapper script to run everything.
-- Dockerize (?)
+- Fix AllJobs script (currently broken).
+- Hebrew CV name support (Python parsing issue from JSON).
+- Containerize w/ Docker (currently issues w/ including ENV and accessing config JSON in docker).
 
 ## Requirements
 - Currently supports Google Chrome and Microsoft Edge.
 - [Chromedriver](https://googlechromelabs.github.io/chrome-for-testing/), Version 120.0.6099.109
 - [Edge WebDriver](https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/?form=MA13LH), Version 120.0.2210.91
-- Python 3.7
+- Python 3.10+
 
 ## Packages
 - Selenium and dotenv packages required.

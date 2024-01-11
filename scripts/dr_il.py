@@ -22,10 +22,16 @@ with open('path_config.json') as f:
 #     case 'Edge':
 #         driver = webdriver.Edge()
 
-driver = webdriver.Edge()
+options = webdriver.EdgeOptions()
+options.add_argument("--headless")
+options.add_argument("disable-gpu")
+options.add_argument('--allow-running-insecure-content')
+options.add_argument('--ignore-certificate-errors')
+driver = webdriver.Edge(options=options)
 
 try:
     wait = WebDriverWait(driver, 20)
+    driver.get_screenshot_as_file("screenshot.png")
     driver.get('https://www.drushim.co.il/')
 
     # Click login
@@ -60,8 +66,8 @@ try:
     
     print("SUCCESS")
 
-except TimeoutException as ex:
-    print("Timed out before element found")
+# except TimeoutException as ex:
+#     print("Timed out before element found")
 
 finally:
     driver.quit()

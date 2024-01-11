@@ -21,7 +21,10 @@ with open('path_config.json') as f:
 #         driver = webdriver.Chrome(options)
 #     case 'Edge':
 #         driver = webdriver.Edge()
-driver = webdriver.Edge()
+    
+options = webdriver.EdgeOptions()
+options.add_argument("--headless")
+driver = webdriver.Edge(options=options)
 try:
     wait = WebDriverWait(driver, 10)
     driver.get('https://www.linkedin.com')

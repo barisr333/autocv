@@ -4,7 +4,7 @@ Automatically update CV files in popular job boards.
 ## TODO
 - Fix AllJobs script (currently broken).
 - Hebrew CV name support (Python parsing issue from JSON).
-- Containerize w/ Docker (currently issues w/ including ENV and accessing config JSON in docker).
+- Containerize w/ Docker.
 
 ## Requirements
 - Currently supports Google Chrome and Microsoft Edge.
@@ -51,3 +51,7 @@ LI = LinkedIn, AJ = AllJobs, DR = Drushim.IL
 ```
 - **IMPORTANT**: 'Name' field must be a **unique** string or substring included in the CV name on LinkedIn/AJ.
 - **IMPORTANT**: Don't forget to include .env and .json files in .gitignore.
+- Wrapper script available, in scripts folder run:
+```shell
+bash run.sh
+```

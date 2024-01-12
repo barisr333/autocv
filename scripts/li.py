@@ -14,17 +14,23 @@ load_dotenv()
 with open('path_config.json') as f:
     paths_list = json.load(f)
 
-# match os.getenv("browser"):
-#     case 'Chrome':
-#         options = webdriver.ChromeOptions()
-#         options.add_argument('ignore-certificate-errors')
-#         driver = webdriver.Chrome(options)
-#     case 'Edge':
-#         driver = webdriver.Edge()
-    
-options = webdriver.EdgeOptions()
-options.add_argument("--headless")
-driver = webdriver.Edge(options=options)
+match os.getenv("browser"):
+    case 'Chrome':
+        options = webdriver.ChromeOptions()
+        options.add_argument('ignore-certificate-errors')
+        # options.add_argument("--headless")
+        # options.add_argument("--no-sandbox")
+        # options.add_argument("--disable-gpu")
+        # options.add_argument("--disable-dev-shm-usage")
+        driver = webdriver.Chrome(options)
+    case 'Edge':
+        options = webdriver.EdgeOptions()
+        # options.add_argument("--headless")
+        # options.add_argument("disable-gpu")
+        # options.add_argument('--allow-running-insecure-content')
+        options.add_argument('--ignore-certificate-errors')
+        driver = webdriver.Edge(options=options)
+
 try:
     wait = WebDriverWait(driver, 10)
     driver.get('https://www.linkedin.com')

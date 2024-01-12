@@ -14,24 +14,28 @@ load_dotenv()
 with open('path_config.json') as f:
     paths_list = json.load(f)
 
-# match os.getenv("browser"):
-#     case 'Chrome':
-#         options = webdriver.ChromeOptions()
-#         options.add_argument('ignore-certificate-errors')
-#         driver = webdriver.Chrome(options)
-#     case 'Edge':
-#         driver = webdriver.Edge()
+match os.getenv("browser"):
+    case 'Chrome':
+        options = webdriver.ChromeOptions()
+        options.add_argument('ignore-certificate-errors')
+        # options.add_argument("--headless")
+        # options.add_argument("--no-sandbox")
+        # options.add_argument("--disable-gpu")
+        # options.add_argument("--disable-dev-shm-usage")
+        driver = webdriver.Chrome(options)
+    case 'Edge':
+        options = webdriver.EdgeOptions()
+        # options.add_argument("--headless")
+        # options.add_argument("disable-gpu")
+        # options.add_argument('--allow-running-insecure-content')
+        options.add_argument('--ignore-certificate-errors')
+        driver = webdriver.Edge(options=options)
 
-options = webdriver.EdgeOptions()
-options.add_argument("--headless")
-options.add_argument("disable-gpu")
-options.add_argument('--allow-running-insecure-content')
-options.add_argument('--ignore-certificate-errors')
-driver = webdriver.Edge(options=options)
+
 
 try:
     wait = WebDriverWait(driver, 20)
-    driver.get_screenshot_as_file("screenshot.png")
+    # driver.get_screenshot_as_file("screenshot.png")
     driver.get('https://www.drushim.co.il/')
 
     # Click login

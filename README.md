@@ -2,9 +2,9 @@
 Automatically update CV files in popular job boards.
 
 ## TODO
-- Fix AllJobs script (currently broken).
+- Add AllJobs.
 - Hebrew CV name support (Python parsing issue from JSON).
-- Containerize w/ Docker.
+- Headless mode for full Docker compatibility.
 
 ## Requirements
 - Currently supports Google Chrome and Microsoft Edge.

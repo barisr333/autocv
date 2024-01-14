@@ -18,18 +18,21 @@ match os.getenv("browser"):
     case 'Chrome':
         options = webdriver.ChromeOptions()
         options.add_argument('ignore-certificate-errors')
-        # options.add_argument("--headless")
-        # options.add_argument("--no-sandbox")
-        # options.add_argument("--disable-gpu")
-        # options.add_argument("--disable-dev-shm-usage")
+        ## Headless mode settings - must be for Docker, as of now ## 
+        options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+        options.add_argument("--disable-gpu")
+        options.add_argument("--disable-dev-shm-usage")
         driver = webdriver.Chrome(options)
     case 'Edge':
         options = webdriver.EdgeOptions()
-        # options.add_argument("--headless")
-        # options.add_argument("disable-gpu")
-        # options.add_argument('--allow-running-insecure-content')
         options.add_argument('--ignore-certificate-errors')
+        ## Headless mode settings - must be for Docker, as of now ## 
+        options.add_argument("--headless")
+        options.add_argument("disable-gpu")
+        options.add_argument('--allow-running-insecure-content')
         driver = webdriver.Edge(options=options)
+
 
 
 
@@ -70,8 +73,8 @@ try:
     
     print("SUCCESS")
 
-# except TimeoutException as ex:
-#     print("Timed out before element found")
+except TimeoutException as ex:
+    print("Timed out before element found")
 
 finally:
     driver.quit()
